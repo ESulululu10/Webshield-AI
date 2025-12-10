@@ -1,0 +1,15 @@
+# Ignore raw dataset folders
+data/Arts_&_Culture_Events/
+data/Entertainment_Venues_Activities/
+data/News/
+
+# Ignore all .npy embedding files
+data/X.npy
+data/*.npy
+
+# Ignore environment folder
+.venv/
+
+# Ignore system files
+.DS_Store
+Thumbs.db

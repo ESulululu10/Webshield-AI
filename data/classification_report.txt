@@ -1,0 +1,9 @@
+                precision    recall  f1-score   support
+
+arts_&_culture      1.000     1.000     1.000      3723
+ entertainment      0.999     0.999     0.999      2454
+          news      0.959     0.959     0.959        49
+
+      accuracy                          0.999      6226
+     macro avg      0.986     0.986     0.986      6226
+  weighted avg      0.999     0.999     0.999      6226
