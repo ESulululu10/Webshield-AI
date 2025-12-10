@@ -116,7 +116,7 @@ These folders contain large files and are not required to run the model.**
 - SHAP explainability visualization  
 - Human feedback (correct/incorrect)  
 - Saves feedback to `feedback.csv` for retraining loops  
-
+---
 ### Run the App
 
 ```bash
@@ -129,6 +129,7 @@ cd WebShield-AI
 
 2. Install dependencies
 pip install -r requirements.txt
+---
 
 🚧 Limitations
 
