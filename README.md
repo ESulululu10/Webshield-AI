@@ -53,6 +53,7 @@ This project was completed individually as part of **CYB 501 – Foundations of 
 ---
 
 ## 📁 Repository Structure
+```
 WebShield-AI/
 │ README.md
 │ requirements.txt
@@ -77,6 +78,7 @@ WebShield-AI/
 ├── classification_report.txt
 ├── confusion_matrix.png
 └── meta.csv
+```
 ---
 
 ⚠ **Raw dataset folders (Arts, Entertainment, News) are intentionally excluded using `.gitignore`.  
@@ -121,45 +123,32 @@ These folders contain large files and are not required to run the model.**
 
 ```bash
 streamlit run src/app_streamlit.py
-
+```
 📦 Installation
+```
 1. Clone the repository
 git clone https://github.com/<your-username>/WebShield-AI.git
 cd WebShield-AI
 
 2. Install dependencies
 pip install -r requirements.txt
----
-
+```
 🚧 Limitations
-
-Severe dataset imbalance (only 49 News samples)
-
-Only 3 categories — real web filtering requires ~50+
-
-Model uses embeddings only (no HTML/JS structural analysis)
-
-SHAP used globally — no local force plots
-
-Manual labeling required (time-consuming)
-
-Streamlit UI is a demo, not deployed in production or SOC tools
+-Severe dataset imbalance (only 49 News samples)
+- Only 3 categories — real web filtering requires ~50+
+- Model uses embeddings only (no HTML/JS structural analysis)
+- SHAP used globally — no local force plots
+- Manual labeling required (time-consuming)
+- Streamlit UI is a demo, not deployed in production or SOC tools
 
 🚀 Future Work
-
-Expand dataset (especially News)
-
-Add URL lexical feature extraction
-
-Integrate screenshot/image-based models (CLIP, ViT)
-
-Improve explainability with local SHAP
-
-Deploy as a real-time filtering service (Flask API / Proxy integration)
-
-Add adversarial robustness testing
-
-Add retraining loop using user feedback
+- Expand dataset (especially News)
+- Add URL lexical feature extraction
+- Integrate screenshot/image-based models (CLIP, ViT)
+- Improve explainability with local SHAP
+- Deploy as a real-time filtering service (Flask API / Proxy integration)
+- Add adversarial robustness testing
+- Add retraining loop using user feedback
 
 🙏 Acknowledgements
-Special thanks to Dr. Khalid Malik and TA JJ Ryan for guidance, feedback, and the opportunity to work on this research-aligned project.
+- Special thanks to Dr. Khalid Malik and TA JJ Ryan for guidance, feedback, and the opportunity to work on this project.
