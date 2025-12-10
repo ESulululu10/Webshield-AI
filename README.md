@@ -1,5 +1,6 @@
 # WebShield-AI  
-### A Human-in-the-Loop Explainable Web Filtering System (CYB 501 – Final Project)
+### A Human-in-the-Loop Explainable Web Filtering System  
+**CYB 501 – Final Project | University of Michigan–Flint**
 
 WebShield-AI is an AI-powered website classification system that categorizes domains into:
 
@@ -7,45 +8,47 @@ WebShield-AI is an AI-powered website classification system that categorizes dom
 - **Entertainment**
 - **News**
 
-The system is built end-to-end using machine learning, explainability tools (SHAP), and a fully functional Streamlit user interface that supports **human feedback** to improve the model over time.
+The system combines machine learning, explainability (SHAP), and a Streamlit interface that supports **human-in-the-loop feedback** to improve accuracy over time.
 
-This project was completed individually as part of **CYB 501 – Foundations of Cybersecurity** at the **University of Michigan–Flint**.
+This project was completed individually as part of **CYB 501 – Foundations of Cybersecurity**.
 
 ---
 
 ## 🌐 Project Highlights
 
-### ✔ End-to-End Pipeline
-This project includes all stages of an ML workflow:
+### ✔ End-to-End Machine Learning Pipeline
 
-1. **Dataset Preparation**
-   - Manually labeled domains across 3 categories  
-   - Image + text embeddings provided by UM-Flint research crawler  
-   - Metadata stored in `meta.csv`
+#### **1. Dataset Preparation**
+- Manually labeled domains into 3 categories  
+- Image + text embeddings (from UM-Flint research crawler)  
+- Metadata stored in `meta.csv`
 
-2. **Preprocessing**
-   - Load `.npy` embeddings  
-   - L2 normalization  
-   - Combine image + text vectors into unified embeddings  
+#### **2. Preprocessing**
+- Load `.npy` embedding files  
+- L2 normalize  
+- Merge image + text vectors into unified embeddings  
 
-3. **Model Training**
-   - PyTorch **MLP classifier**
-   - Handles ~6.9K labeled samples  
-   - Achieves **99% overall accuracy**
+#### **3. Model Training**
+- PyTorch **Multi-Layer Perceptron (MLP)**  
+- Trained on ~6.9K samples  
+- Achieved **99% overall accuracy**
 
-4. **Evaluation**
-   - Classification report & confusion matrix  
-   - Handles significant dataset imbalance (only 49 news samples)
+#### **4. Model Evaluation**
+- Classification report + confusion matrix  
+- Handles severe imbalance (only 49 News samples)
 
-5. **Explainability (SHAP)**
-   - KernelExplainer on normalized embeddings  
-   - Global SHAP plot to understand feature influence  
+#### **5. Explainability (SHAP)**
+- KernelExplainer applied to normalized embeddings  
+- Global summary plot for feature contributions  
 
-6. **Streamlit App**
-   - Select domain from dropdown  
-   - Run classification + confidence  
-   - View SHAP explainability plots  
-   - Provide **human-in-the-loop feedback** saved in `feedback.csv`
+#### **6. Streamlit UI**
+- Domain dropdown selector  
+- Classification + confidence  
+- SHAP explainability plot  
+- Feedback buttons:  
+  - ✅ Prediction Correct  
+  - ❌ Prediction Wrong  
+- Feedback saved to `feedback.csv`
 
 ---
 
@@ -74,9 +77,10 @@ WebShield-AI/
 ├── classification_report.txt
 ├── confusion_matrix.png
 └── meta.csv
+---
 
-
-⚠ **Raw dataset folders (Arts, Entertainment, News) are intentionally excluded** to keep the repository lightweight and avoid uploading large files.
+⚠ **Raw dataset folders (Arts, Entertainment, News) are intentionally excluded using `.gitignore`.  
+These folders contain large files and are not required to run the model.**
 
 ---
 
@@ -89,75 +93,72 @@ WebShield-AI/
 | News             | 0.959     | 0.959  | 0.959    | 49      |
 
 - **Overall Accuracy:** 0.999  
-- News class performs slightly lower due to dataset imbalance  
-- Still produces strong generalization across all categories  
+- News class underperforms because of extremely small sample size  
+- Model still shows strong generalization across categories  
 
 ---
 
 ## 🔍 Explainability with SHAP
 
-- Uses **KernelExplainer** on normalized embeddings  
-- Generates a global summary plot (`shap_summary.png`)  
-- Helps understand how embedding dimensions influence predictions  
-- Enables transparency for cybersecurity analysts  
+- Uses **SHAP KernelExplainer**  
+- Shows global feature importance  
+- Helps analysts understand how embedding dimensions influence classification  
+- Builds trust by making model decisions transparent  
 
 ---
 
-## 🖥 Streamlit Web App
+## 🖥 Streamlit Web Application
 
 ### Features:
 - Domain dropdown  
 - One-click classification  
-- Probability distribution table  
-- Confidence score  
-- SHAP visualization  
-- Human validation buttons:  
-  - ✅ Prediction correct  
-  - ❌ Prediction wrong  
-- Feedback saved to `feedback.csv` for future retraining  
+- Confidence + class probability distribution  
+- SHAP explainability visualization  
+- Human feedback (correct/incorrect)  
+- Saves feedback to `feedback.csv` for retraining loops  
 
-To run:
+### Run the App
 
 ```bash
 streamlit run src/app_streamlit.py
 
 📦 Installation
-
-Clone the repository:
-git clone https://github.com/<username>/WebShield-AI.git
+1. Clone the repository
+git clone https://github.com/<your-username>/WebShield-AI.git
 cd WebShield-AI
 
-Install dependencies:
+2. Install dependencies
 pip install -r requirements.txt
 
 🚧 Limitations
 
-Dataset imbalance (only 49 news samples)
+Severe dataset imbalance (only 49 News samples)
 
-Only 3 categories (real web filtering needs 50+ categories)
+Only 3 categories — real web filtering requires ~50+
 
-Embedding-only approach (no HTML, JS, layout features)
+Model uses embeddings only (no HTML/JS structural analysis)
 
-SHAP is global-only (no per-domain explanation)
+SHAP used globally — no local force plots
 
 Manual labeling required (time-consuming)
 
-Streamlit UI is a demo, not integrated with proxy/SOC tools
+Streamlit UI is a demo, not deployed in production or SOC tools
 
 🚀 Future Work
 
-Expand dataset coverage
+Expand dataset (especially News)
 
-Add URL-level lexical features
+Add URL lexical feature extraction
 
-Integrate screenshot-based models (ViT, CLIP)
+Integrate screenshot/image-based models (CLIP, ViT)
 
 Improve explainability with local SHAP
 
-Deploy as real-time filtering API
+Deploy as a real-time filtering service (Flask API / Proxy integration)
 
-Implement adversarial robustness testing
+Add adversarial robustness testing
+
+Add retraining loop using user feedback
 
 🙏 Acknowledgements
-
-Special thanks to Dr. Khalid Malik and TA JJ Ryan for their guidance, support, and the opportunity to work on a research-aligned project for CYB-501.
+Special thanks to Dr. Khalid Malik and TA JJ Ryan for guidance, feedback, and the opportunity to work on this research-aligned project.
